@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'video'
+    'video',
+    'users',
+    'crispy_forms'
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,3 +135,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

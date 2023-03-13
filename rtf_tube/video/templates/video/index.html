@@ -1,4 +1,4 @@
-{% extends 'video/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block head %}
 
@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-<h1> Главная </h1>
 {% for item in data %}
 <a href="video/{{ item.id }}">
     <img src="{{ item.preview }}" height="200" width="350">
