@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+    Загрузить
+{% endblock %}
+
+{% block content %}
+
+<h1>Загрузить новое видео</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <a href=""><input type="submit"></a>
+
+{% endblock %}
