@@ -2,10 +2,12 @@ from django.shortcuts import render
 from .models import Video
 from .forms import UploadVideoForm
 from django.http import HttpResponseRedirect
-
+from django.contrib.auth.models import User
 
 def main_page(request):
     videos = Video.objects.all()
+    for video in videos:
+        video.author_id = User.objects.get(id=video.author_id).username
     return render(request, 'video/index.html', {'data': videos})
 
 def play_video(request, video_id):

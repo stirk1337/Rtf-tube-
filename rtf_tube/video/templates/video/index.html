@@ -9,14 +9,32 @@
 {% endblock %}
 
 {% block content %}
+<div class="recommended">
+    <div class="recommended-grids">
+        <div class="recommended-info">
+            <h3>Все видео</h3>
+        </div>
 {% for item in data %}
-<a href="/video/{{ item.id }}">
-    {% if not item.preview %}
-        <img src="/static/video/preview/v_review.jpg" height="200" width="350">
-    {% else %}
-        <img src="{{ item.preview.url }}" height="200" width="350">
-    {% endif %}
-</a>
+            <div class="col-md-3 resent-grid recommended-grid">
+                <div class="resent-grid-img recommended-grid-img">
+                    <a href="/video/{{ item.id }}">
+                    {% if not item.preview %}
+                        <img src="/static/video/preview/v_review.jpg" height="300" width="350">
+                    {% else %}
+                        <img src="{{ item.preview.url }}" height="300" width="350">
+                    {% endif %}</a>
+                </div>
+                <div class="resent-grid-info recommended-grid-info video-info-grid">
+                    <h5><a href="single.html" class="title">{{ item.title }}</a></h5>
+                    <ul>
+                        <li><p class="author author-info"><a href="#" class="author">{{ item.author_id }}</a></p></li>
+                        <li class="right-list"><p class="views views-info">{{ item.views }} просмотров</p></li>
+                    </ul>
+                </div>
+            </div>
+
 
 {% endfor %}
+    </div>
+</div>
 {% endblock %}
