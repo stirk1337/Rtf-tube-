@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from .models import Video
-from .forms import UploadVideoForm
-from django.http import HttpResponseRedirect
+from .forms import UploadVideoForm, CommentForm
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
+import datetime
+from datetime import datetime
+
+def get_time() -> str:
+    return datetime.today().strftime('%d-%m-%Y') + ' ' + datetime.now().strftime("%H:%M")
 
 def main_page(request):
     videos = Video.objects.all()
@@ -12,7 +17,8 @@ def main_page(request):
 
 def play_video(request, video_id):
     video = Video.objects.get(id=video_id)
-    return render(request, 'video/video.html', {'data': video})
+    comment_form = CommentForm()
+    return render(request, 'video/video.html', {'data': video, 'form': comment_form})
 
 def user_videos(request):
     videos = Video.objects.filter(author_id=request.user.id)
@@ -21,7 +27,6 @@ def user_videos(request):
 def upload_video(request):
     if request.method == 'POST':
         form = UploadVideoForm(request.POST, request.FILES)
-        print(form.errors)
         if form.is_valid():
             video = Video(author_id = request.user.id,
                           title=request.POST.get('title'),
@@ -40,5 +45,22 @@ def upload_video(request):
         
     print(request.POST.get('title'))
     return render(request, 'video/upload.html', {'form': form})
+
+def post_commentary(request):
+    if request.method == 'POST':
+        if len(request.POST.get('comment')) != 0:
+            video = Video.objects.get(id=int(request.GET.get('video_id')))
+            comments = video.comments['comments']
+            comments.append({'id': request.user.id, 'time': get_time(), 'comment': request.POST.get('comment')})
+            video.save()
+            return HttpResponseRedirect('/video/' + str(video.id))
+        else:
+            return HttpResponseRedirect('/video/' + str(video.id))
+       
+                
+
+
+
+    
 
     

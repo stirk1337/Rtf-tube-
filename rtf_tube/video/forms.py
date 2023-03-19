@@ -7,3 +7,5 @@ class UploadVideoForm(forms.Form):
     video = forms.FileField(label='Видео', validators=[validate_file_extension])
     preview = forms.FileField(label='Превью', required=False)
     
+class CommentForm(forms.Form):
+    comment = forms.CharField(label='', widget=forms.Textarea(), max_length=100)

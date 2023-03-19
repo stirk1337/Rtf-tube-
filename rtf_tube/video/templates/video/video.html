@@ -2,6 +2,7 @@
 
 {% block head %}
 <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+<script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
 {% endblock %}
 
 {% block title %}
@@ -9,13 +10,21 @@
 {% endblock %}
 
 {% block content %}
-    <video
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <div class="show-top-grids">
+    <div class="col-sm-8 single-left">
+      <div class="song">
+        <div class="song-info">
+          <h3>{{ data.title }}</h3>	
+      </div>
+        <div class="video-grid">
+           <video
       id="my-video"
       class="video-js"
       controls
       preload="auto"
-      width="640"
-      height="264"
+      width="1000"
+      height="500"
       data-setup="{}"
       height="200" width="350"
     >
@@ -31,5 +40,45 @@
         >
       </p>
     </video>
-<script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+        </div>
+      </div>
+      <div class="song-grid-right">
+        <div class="share">
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+      <div class="published">
+          <p><b>Опубликовано</b></p>
+          <p> {{ data.description }}</p>
+      </div>
+      <div class="all-comments">
+        <div class="all-comments-info">
+          <a href="#">Все комментарии ({{ data.comments.comments|length }})</a>
+          <div class="box">
+            <form method="POST", action="/video/post_commentary/?video_id={{ data.id }}">
+              {% csrf_token %}
+              {{ form }}
+              <input type="submit">
+
+          </form>
+          </div>
+        </div>
+        <div class="media-grids">
+          {% for com in data.comments.comments %}
+          <div class="media">
+            <h5>{{ com.id }}</h5>
+            <div class="media-left">
+              <a href="#">
+                
+              </a>
+            </div>
+            <div class="media-body">
+              <p>{{ com.comment }}</p>
+            </div>
+           
+          </div>
+          {% endfor %}
+        </div>
+        
+      
 {% endblock %}
