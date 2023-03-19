@@ -18,6 +18,7 @@ def main_page(request):
 def play_video(request, video_id):
     video = Video.objects.get(id=video_id)
     comment_form = CommentForm()
+    
     return render(request, 'video/video.html', {'data': video, 'form': comment_form})
 
 def user_videos(request):
