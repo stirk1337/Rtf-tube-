@@ -48,8 +48,9 @@
       </div>
       <div class="clearfix"> </div>
       <div class="published">
-          <p><b>Опубликовано</b></p>
+          <p><b>Опубликовано {{ data.created_at }}</b></p>
           <p> {{ data.description }}</p>
+          <p><b>{{ data.views.count }} просмотров</b></p>
       </div>
       <div class="all-comments">
         <div class="all-comments-info">
@@ -64,14 +65,15 @@
           </div>
         </div>
         <div class="media-grids">
-          {% for com in data.comments.comments %}
+          {% for com in data.comment_set.all %}
           <div class="media">
-            <h5>{{ com.id }}</h5>
+            <h5>{{ com.user }}</h5>
             <div class="media-left">
               <img src="/video/static/img/user_avatar.png" width="50" height="50">
             </div>
             <div class="media-body">
-              <p>{{ com.comment }}</p>
+              <p>{{ com.message }}</p>
+              <p> {{ com.created_at }}</p>
             </div>
            
           </div>
