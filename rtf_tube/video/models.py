@@ -16,9 +16,14 @@ class Video(models.Model):
     author_id = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def comment_count(self):
+        return self.comment_set.count()
+
     class Meta:
         verbose_name = 'Видео'
         verbose_name_plural = 'Видео'
+
+    
 
 
 class Comment(models.Model):

@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+```{% extends 'layout.html' %}
 
 {% block head %}
 <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
@@ -48,23 +48,31 @@
       </div>
       <div class="clearfix"> </div>
       <div class="published">
-          <p><b>Опубликовано {{ data.created_at }}</b>
+        <div class="video_header">
+          <div>
+            <img src="/video/static/img/user_avatar.png" width="50" height="50">
+            <b style="font-size: 15px;color:#0076CC" >{{ data.author_id }} </b>
+            <p>Опубликовано {{ data.created_at }}</p>
+          </div>
+          <div class="likes_dis">
+            <p><b>{{ data.views.count }} просмотров</b></p>
             <form method="POST", action="/video/post_like/">
               {% csrf_token %}
               {{ like_form }}
-              <input type="image" src="/video/static/img/like_icon_green.png" height="40" width="50">{{ data.likes.count }}</p>
+              <input type="image" src="/video/static/img/like_icon_green.png" height="50" width="70">{{ data.likes.count }}</p>
+            </form>
+            <form method="POST", action="/video/post_dislike/">
+              {% csrf_token %}
+              {{ dislike_form }}
+              <input type="image" src="/video/static/img/dislike_icon_red.png" height="50" width="70">{{ data.dislikes.count }} </p>
           </form>
-          <form method="POST", action="/video/post_dislike/">
-            {% csrf_token %}
-            {{ dislike_form }}
-            <input type="image" src="/video/static/img/dislike_icon_red.png" height="40" width="50">{{ data.dislikes.count }}</p>
-        </form>
+          </div>
+        </div>
           <p> {{ data.description }}</p>
-          <p><b>{{ data.views.count }} просмотров</b></p>
       </div>
       <div class="all-comments">
         <div class="all-comments-info">
-          <a href="#">Все комментарии ({{ data.comments.comments|length }})</a>
+          <a href="#">Все комментарии ({{ data.comment_count }})</a>
           <div class="box">
             <form method="POST", action="/video/post_commentary/">
               {% csrf_token %}
@@ -90,4 +98,4 @@
         </div>
         
       
-{% endblock %}
+{% endblock %}```

@@ -9,7 +9,7 @@
         <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
 
-    <form method="post" action="{% url 'login' %}">
+    <form class ="register" method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <table>
 
@@ -24,7 +24,24 @@
     </tr>
     </table>
 
-    <input type="submit" value="login" />
+    <input type="submit" value="Войти" style="outline: none;
+    font-style: normal;
+    padding: 8px 20px;
+    background: #21DEEF;
+    font-size: 14px;
+    color: #fff;
+    display: block;
+    border: none;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    transition: .5s all;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    -o-transition: .5s all;
+    -ms-transition: .5s all;"/>
     <input type="hidden" name="next" value="{{ next }}" />
     </form>
 {% endblock %}

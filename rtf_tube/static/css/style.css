@@ -416,6 +416,40 @@ ul.social-slide li i.mac{
 	display: inline-block;
 	margin: 0 .5em;
 }
+.register{
+	display: inline-block;
+	margin-left: 42%;
+	margin-top: 20%;
+}
+.register label, .register input{
+	font-size: 14px;
+}
+.video_header{
+	display: flex;
+	justify-content: space-between;
+}
+.likes_dis{
+	display: flex;
+}
+.informations{
+	display: inline-block;
+	margin-left: 483.5px;
+	margin-top: 10px;
+	font-size: 14px;
+	text-align: center;
+}
+.logo_flex{
+	display: flex;
+	font-size: 20px;
+}
+
+.logo_flex p{
+	margin-top: 17px;
+	margin-left: 30px;
+}
+
+
+
 @media screen and (max-width: 600px) {
   .callbacks_nav {
     top: 47%;
@@ -1060,6 +1094,7 @@ select.form-control.bfh-countries:hover {
     padding-left: 0;
     background: #f7f7f7;
     padding: 1em;
+
 }
 .published h4{
     color: #717171;

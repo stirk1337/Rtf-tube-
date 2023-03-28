@@ -81,9 +81,11 @@ def post_commentary(request):
             return HttpResponseRedirect('/video/' + str(video.id))
         else:
             return HttpResponseRedirect('/video/' + str(video.id))
-       
-                
+                   
 def post_like(request):
+    video = Video.objects.get(id=request.POST.get('video_id'))
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/video/' + str(video.id))
     video = Video.objects.get(id=request.POST.get('video_id'))
     if request.user in video.likes.all():
         video.likes.remove(request.user)
@@ -93,6 +95,9 @@ def post_like(request):
     return HttpResponseRedirect('/video/' + str(video.id))
 
 def post_dislike(request):
+    video = Video.objects.get(id=request.POST.get('video_id'))
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/video/' + str(video.id))
     video = Video.objects.get(id=request.POST.get('video_id'))
     if request.user in video.dislikes.all():
         video.dislikes.remove(request.user)
