@@ -7,5 +7,7 @@ urlpatterns = [
     path('accounts/videos/', views.user_videos),
     path('accounts/upload/', views.upload_video),
     path('video/post_commentary/', views.post_commentary),
-    path('video/upload', views.upload_video)
+    path('video/upload', views.upload_video),
+    path('video/post_like/', views.post_like),
+    path('video/post_dislike/', views.post_dislike)
 ]

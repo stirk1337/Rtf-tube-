@@ -48,7 +48,17 @@
       </div>
       <div class="clearfix"> </div>
       <div class="published">
-          <p><b>Опубликовано {{ data.created_at }}</b></p>
+          <p><b>Опубликовано {{ data.created_at }}</b>
+            <form method="POST", action="/video/post_like/">
+              {% csrf_token %}
+              {{ like_form }}
+              <input type="image" src="/video/static/img/like_icon_green.png" height="40" width="50">{{ data.likes.count }}</p>
+          </form>
+          <form method="POST", action="/video/post_dislike/">
+            {% csrf_token %}
+            {{ dislike_form }}
+            <input type="image" src="/video/static/img/dislike_icon_red.png" height="40" width="50">{{ data.dislikes.count }}</p>
+        </form>
           <p> {{ data.description }}</p>
           <p><b>{{ data.views.count }} просмотров</b></p>
       </div>
@@ -56,11 +66,10 @@
         <div class="all-comments-info">
           <a href="#">Все комментарии ({{ data.comments.comments|length }})</a>
           <div class="box">
-            <form method="POST", action="/video/post_commentary/?video_id={{ data.id }}">
+            <form method="POST", action="/video/post_commentary/">
               {% csrf_token %}
-              {{ form }}
+              {{ comment_form }}
               <input type="submit">
-
           </form>
           </div>
         </div>

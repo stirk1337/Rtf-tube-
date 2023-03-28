@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Video, Ip, Comment
-from .forms import UploadVideoForm, CommentForm
+from .forms import UploadVideoForm, CommentForm, LikeForm, DislikeForm
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 import datetime
@@ -12,7 +12,7 @@ def get_client_ip(request):
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
     else:
-        ip = request.META.get('REMOTE_ADDR') # В REMOTE_ADDR значение айпи пользователя
+        ip = request.META.get('REMOTE_ADDR')
     return ip
 
 def get_time() -> str:
@@ -25,6 +25,11 @@ def main_page(request):
 def play_video(request, video_id):
     video = Video.objects.get(id=video_id)
     comment_form = CommentForm()
+    like_form = LikeForm()
+    dislike_form = DislikeForm()
+    comment_form['video_id'].initial = video_id
+    like_form['video_id'].initial = video_id
+    dislike_form['video_id'].initial = video_id
     ip = get_client_ip(request)
     if Ip.objects.filter(ip=ip).exists():
         video.views.add(Ip.objects.get(ip=ip))
@@ -32,7 +37,10 @@ def play_video(request, video_id):
         Ip.objects.create(ip=ip)
         video.views.add(Ip.objects.get(ip=ip))
        
-    return render(request, 'video/video.html', {'data': video, 'form': comment_form})
+    return render(request, 'video/video.html', {'data': video, 
+                                                'comment_form': comment_form, 
+                                                'like_form': like_form,
+                                                'dislike_form': dislike_form})
 
 @login_required(login_url='/accounts/login/')
 def user_videos(request):
@@ -49,8 +57,6 @@ def upload_video(request):
                           title=request.FILES['video'].name.split('.')[0][:30],
                           description=request.POST.get('description'),
                           video=request.FILES['video'],
-                          likes=0,
-                          dislikes=0,
                           preview=request.POST.get('preview'),
                           )
             video.save()
@@ -67,7 +73,7 @@ def post_commentary(request):
         if not request.user.is_authenticated:
             return HttpResponseRedirect('/accounts/login/')
         if len(request.POST.get('comment')) != 0:
-            video = Video.objects.get(id=request.GET.get('video_id'))
+            video = Video.objects.get(id=request.POST.get('video_id'))
             video.comment_set.create(user=request.user,
                                   message=request.POST.get('comment'),
                                   )
@@ -77,9 +83,22 @@ def post_commentary(request):
             return HttpResponseRedirect('/video/' + str(video.id))
        
                 
+def post_like(request):
+    video = Video.objects.get(id=request.POST.get('video_id'))
+    if request.user in video.likes.all():
+        video.likes.remove(request.user)
+    else:
+        video.likes.add(request.user)
+        video.dislikes.remove(request.user)
+    return HttpResponseRedirect('/video/' + str(video.id))
 
-
-
-    
+def post_dislike(request):
+    video = Video.objects.get(id=request.POST.get('video_id'))
+    if request.user in video.dislikes.all():
+        video.dislikes.remove(request.user)
+    else:   
+        video.dislikes.add(request.user)
+        video.likes.remove(request.user)
+    return HttpResponseRedirect('/video/' + str(video.id))
 
     

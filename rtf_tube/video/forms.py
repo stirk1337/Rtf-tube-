@@ -6,4 +6,11 @@ class UploadVideoForm(forms.Form):
     description = forms.CharField(label='Описание', max_length=300)
 
 class CommentForm(forms.Form):
+    video_id = forms.IntegerField(widget = forms.HiddenInput(),)
     comment = forms.CharField(label='', widget=forms.Textarea(), max_length=100)
+
+class LikeForm(forms.Form):
+    video_id = forms.IntegerField(widget = forms.HiddenInput(),)
+
+class DislikeForm(forms.Form):
+    video_id = forms.IntegerField(widget = forms.HiddenInput(),)
