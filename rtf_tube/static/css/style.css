@@ -1754,7 +1754,7 @@ span.glyphicon.glyphicon-user {
     color: #9E9E9E;
     margin: 1em 0;
     text-decoration: none;
-    background: url(../images/h-arrow.png) no-repeat 0px 4px;
+    background: url(../img/h-arrow.png) no-repeat 0px 4px;
     padding-left: 1.5em;
 }
 .upload-right-bottom-left ul li a:hover{

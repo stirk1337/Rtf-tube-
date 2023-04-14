@@ -19,6 +19,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='video',
             name='video',
-            field=models.FileField(upload_to='video/static/video/videos', validators=[video.validators.validate_file_extension]),
+            field=models.FileField(upload_to='video/static/video/videos', validators=[video.validators.validate_video_extension]),
         ),
     ]

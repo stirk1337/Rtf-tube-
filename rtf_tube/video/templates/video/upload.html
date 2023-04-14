@@ -14,25 +14,22 @@
     <div class="container">
         <div class="upload-grids">
             <div class="upload-right">
-                <div class="upload-file">
-                    <div class="services-icon">
-                        <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
-                    </div>
+                
                     <div class="upload-info">
-                        <h5>Выберите файл</h5>
-                        <span>или</span>
-                        <p>перетащите</p>
+    
     
                     </div>
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                    {{ form.video }}
+           
                     <div class="informations">
+                        Видео{{ form.video }}
+                        Превью{{ form.preview }}
                         <h5>{{ form.description }}</h5>
                         {{ form.errors }}
                         <a href=""><input type="submit"></a>
                     </div>
-                </div>
+     
 
                 
             </div>

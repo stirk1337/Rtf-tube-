@@ -53,12 +53,15 @@ def upload_video(request):
     if request.method == 'POST':
         form = UploadVideoForm(request.POST, request.FILES)
         if form.is_valid():
+
             video = Video(author_id = request.user,
                           title=request.FILES['video'].name.split('.')[0][:30],
                           description=request.POST.get('description'),
                           video=request.FILES['video'],
-                          preview=request.POST.get('preview'),
+                          preview=request.FILES['preview'] if 'preview' in request.FILES else None,
                           )
+            
+
             video.save()
             return HttpResponseRedirect('/accounts/videos/')
 

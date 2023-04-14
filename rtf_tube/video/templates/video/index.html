@@ -1,4 +1,6 @@
 {% extends 'layout.html' %}
+{% load static %}
+
 
 {% block head %}
 
@@ -19,7 +21,7 @@
                 <div class="resent-grid-img recommended-grid-img">
                     <a href="/video/{{ item.id }}">
                     {% if not item.preview %}
-                        <img src="/static/video/preview/v_review.jpg" height="300" width="350">
+                        <img src="{% static 'video/preview/v_review.jpg' %}" height="300" width="350">
                     {% else %}
                         <img src="{{ item.preview.url }}" height="300" width="350">
                     {% endif %}</a>
@@ -27,7 +29,7 @@
                 <div class="resent-grid-info recommended-grid-info video-info-grid">
                     <h5><a href="/video/{{ item.id }}" class="title">{{ item.title }}</a></h5>
                     <ul>
-                        <li><p class="author author-info"><img src="/video/static/img/user_avatar.png" width="30" height="30"><a href="#" class="author">{{ item.author_id }}</a></p></li>
+                        <li><p class="author author-info"><img src="{% static 'img/user_avatar.png' %}" width="30" height="30"><a href="#" class="author">{{ item.author_id }}</a></p></li>
                         <li class="right-list"><p class="views views-info">{{ item.views.count }} просмотров</p></li>
                     </ul>
                 </div>
