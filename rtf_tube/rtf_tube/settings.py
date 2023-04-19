@@ -10,8 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ### S3 КОНСТАНТЫ
 AWS_ACCESS_KEY_ID = 'dYWyowxB1tpSxSDpezb3jM'
 AWS_SECRET_ACCESS_KEY = 'g2TXPDmnBLHaf7u8ZBcEFyK7V7J4sANXeFJxh9DRvnbU'
+AWS_ACCESS_KEY_ID = 'dYWyowxB1tpSxSDpezb3jM'
+AWS_SECRET_ACCESS_KEY = 'g2TXPDmnBLHaf7u8ZBcEFyK7V7J4sANXeFJxh9DRvnbU'
 AWS_STORAGE_BUCKET_NAME = 'rtf-tube'
 AWS_S3_ENDPOINT_URL = 'https://hb.bizmrg.com'
+#STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3StaticStorage"}}
 #STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3StaticStorage"}}
 AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
 AWS_S3_CUSTOM_DOMAIN = '%s.hb.bizmrg.com' % AWS_STORAGE_BUCKET_NAME
@@ -24,6 +27,7 @@ DEFAULT_FILE_STORAGE = 'rtf_tube.storage.MediaStorage'
 #MEDIA_ROOT = 'static/media'
 AWS_S3_REGION_NAME = 'ru-msk'
 
+PASSWORD_RESET_TIMEOUT = 259200
 PASSWORD_RESET_TIMEOUT = 259200
 
 ###
@@ -114,6 +118,13 @@ WSGI_APPLICATION = 'rtf_tube.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#   }
+#}
 
 #DATABASES = {
 #    'default': {
