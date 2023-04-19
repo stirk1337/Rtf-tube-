@@ -50,8 +50,8 @@
       <div class="published">
         <div class="video_header">
           <div>
-            <img src="{% static 'img/user_avatar.png' %}" width="50" height="50">
-            <b style="font-size: 15px;color:#0076CC" >{{ data.author_id }} </b>
+            <a href="/accounts/videos/{{ data.author_id }}"><img src="{% static 'img/user_avatar.png' %}" width="50" height="50"></a>
+            <a href="/accounts/videos/{{ data.author_id }}"><b style="font-size: 15px;color:#0076CC" >{{ data.author_id }} </b></a>
             <p>Опубликовано {{ data.created_at }}</p>
           </div>
           <div class="likes_dis">
@@ -84,7 +84,7 @@
         <div class="media-grids">
           {% for com in data.comment_set.all %}
           <div class="media">
-            <h5>{{ com.user }}</h5>
+            <a href="/accounts/videos/{{ com.user }}"><h5>{{ com.user }}</h5></a>
             <div class="media-left">
               <img src="{% static 'img/user_avatar.png' %}" width="50" height="50">
             </div>

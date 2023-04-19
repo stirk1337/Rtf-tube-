@@ -29,7 +29,7 @@
                 <div class="resent-grid-info recommended-grid-info video-info-grid">
                     <h5><a href="/video/{{ item.id }}" class="title">{{ item.title }}</a></h5>
                     <ul>
-                        <li><p class="author author-info"><img src="{% static 'img/user_avatar.png' %}" width="30" height="30"><a href="#" class="author">{{ item.author_id }}</a></p></li>
+                        <li><p class="author author-info"><img src="{% static 'img/user_avatar.png' %}" width="30" height="30"><a href="/accounts/videos/{{ item.author_id }}" class="author">{{ item.author_id }}</a></p></li>
                         <li class="right-list"><p class="views views-info">{{ item.views.count }} просмотров</p></li>
                     </ul>
                 </div>
@@ -38,7 +38,7 @@
 
             {% endfor %}
         <br>
-        {% if profile_id == request.user.id %}
+        {% if user == request.user %}
         <div class="recommended">
             <div class="recommended-grids">
                 <div class="recommended-info">
@@ -58,7 +58,7 @@
                         <div class="resent-grid-info recommended-grid-info video-info-grid">
                             <h5><a href="/video/{{ item.video.id }}" class="title">{{ item.video.title }}</a></h5>
                             <ul>
-                                <li><p class="author author-info"><img src="{% static 'img/user_avatar.png' %}" width="30" height="30"><a href="#" class="author">{{ item.video.author_id }}</a></p></li>
+                                <li><p class="author author-info"><img src="{% static 'img/user_avatar.png' %}" width="30" height="30"><a href="/accounts/videos/{{ item.video.author_id }}" class="author">{{ item.video.author_id }}</a></p></li>
                                 <li class="right-list"><p class="views views-info">{{ item.video.views.count }} просмотров</p></li>
                             </ul>
                         </div>

@@ -56,10 +56,15 @@ def play_video(request, video_id):
                                                 'dislike_form': dislike_form})
 
 @login_required(login_url='/accounts/login/')
-def user_videos(request, user_id):
-    videos = Video.objects.filter(author_id=user_id)
+def user_videos(request):
+    return HttpResponseRedirect('/accounts/videos/' + request.user.username)
+
+@login_required(login_url='/accounts/login/')
+def user_videos(request, username):
+    user = User.objects.get(username=username)
+    videos = Video.objects.filter(author_id=user.id)
     history = History.objects.filter(user=request.user)
-    return render(request, 'video/your_videos.html', {'data': videos, 'profile_id': user_id, 'history': reversed(history)})
+    return render(request, 'video/your_videos.html', {'data': videos, 'user': user, 'history': reversed(history)})
 
 @login_required(login_url='/accounts/login/')
 def upload_video(request):
@@ -76,7 +81,7 @@ def upload_video(request):
             
 
             video.save()
-            return HttpResponseRedirect('/accounts/videos/' + request.user.id)
+            return HttpResponseRedirect('/accounts/videos/' + request.user.username)
 
     else:
         form = UploadVideoForm()
