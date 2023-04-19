@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Video, Ip, Comment
+from .models import Video, Ip, Comment, History
 from .forms import UploadVideoForm, CommentForm, LikeForm, DislikeForm
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
@@ -22,7 +22,20 @@ def main_page(request):
     videos = Video.objects.all()
     return render(request, 'video/index.html', {'data': videos})
 
+
+def update_history(request, video_id):
+    if not request.user.is_authenticated:
+        return 
+    try:
+        history = History.objects.get(video=Video.objects.get(id=video_id), user=request.user).delete()
+    except History.DoesNotExist:
+        pass
+    history = History(video=Video.objects.get(id=video_id), user=request.user)
+    history.save()
+
+
 def play_video(request, video_id):
+    update_history(request, video_id)
     video = Video.objects.get(id=video_id)
     comment_form = CommentForm()
     like_form = LikeForm()
@@ -43,10 +56,10 @@ def play_video(request, video_id):
                                                 'dislike_form': dislike_form})
 
 @login_required(login_url='/accounts/login/')
-def user_videos(request):
-    videos = Video.objects.filter(author_id=request.user.id)
-    return render(request, 'video/your_videos.html', {'data': videos})
-
+def user_videos(request, user_id):
+    videos = Video.objects.filter(author_id=user_id)
+    history = History.objects.filter(user=request.user)
+    return render(request, 'video/your_videos.html', {'data': videos, 'profile_id': user_id, 'history': reversed(history)})
 
 @login_required(login_url='/accounts/login/')
 def upload_video(request):
@@ -55,7 +68,7 @@ def upload_video(request):
         if form.is_valid():
 
             video = Video(author_id = request.user,
-                          title=request.FILES['video'].name.split('.')[0][:30],
+                          title=request.FILES['video'].name.split('.')[0][:30] + '...',
                           description=request.POST.get('description'),
                           video=request.FILES['video'],
                           preview=request.FILES['preview'] if 'preview' in request.FILES else None,
@@ -63,7 +76,7 @@ def upload_video(request):
             
 
             video.save()
-            return HttpResponseRedirect('/accounts/videos/')
+            return HttpResponseRedirect('/accounts/videos/' + request.user.id)
 
     else:
         form = UploadVideoForm()

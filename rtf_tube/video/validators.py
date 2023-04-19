@@ -16,6 +16,7 @@ def validate_image_extension(value):
 
 
 def file_size(value):
-    limit = 100 * 1024 * 1024
+    limit = 31000 * 1024 * 1024
+    print(value.size)
     if value.size > limit:
-        raise ValidationError('Файл слишком большой. Максимальный вес: 100 МБ')
+        raise ValidationError('Файл слишком большой. Максимальный вес: 31000 МБ')

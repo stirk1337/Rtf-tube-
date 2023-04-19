@@ -13,10 +13,10 @@
 <div class="recommended">
     <div class="recommended-grids">
         <div class="recommended-info">
-            <h3>Ваши видео</h3>
+            <h3>Профиль {{ user }}</h3>
         </div>
-{% for item in data %}
-        {% if item.author_id == request.user %}
+            {% for item in data %}
+        
             <div class="col-md-3 resent-grid recommended-grid">
                 <div class="resent-grid-img recommended-grid-img">
                     <a href="/video/{{ item.id }}">
@@ -34,10 +34,40 @@
                     </ul>
                 </div>
             </div>
+            </div></div>
+
+            {% endfor %}
+        <br>
+        {% if profile_id == request.user.id %}
+        <div class="recommended">
+            <div class="recommended-grids">
+                <div class="recommended-info">
+                    <h3>Ваша история просмотров </h3>
+                </div>
+                    {% for item in history %}
+                
+                    <div class="col-md-3 resent-grid recommended-grid">
+                        <div class="resent-grid-img recommended-grid-img">
+                            <a href="/video/{{ item.video.id }}">
+                            {% if not item.video.preview %}
+                                <img src="{% static 'video/preview/v_review.jpg' %}" height="300" width="350">
+                            {% else %}
+                                <img src="{{ item.video.preview.url }}" height="300" width="350">
+                            {% endif %}</a>
+                        </div>
+                        <div class="resent-grid-info recommended-grid-info video-info-grid">
+                            <h5><a href="/video/{{ item.video.id }}" class="title">{{ item.video.title }}</a></h5>
+                            <ul>
+                                <li><p class="author author-info"><img src="{% static 'img/user_avatar.png' %}" width="30" height="30"><a href="#" class="author">{{ item.video.author_id }}</a></p></li>
+                                <li class="right-list"><p class="views views-info">{{ item.video.views.count }} просмотров</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
         {% endif %}
 
 
-{% endfor %}
+
     </div>
 </div>
 {% endblock %}

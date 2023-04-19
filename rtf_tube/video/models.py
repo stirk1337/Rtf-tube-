@@ -6,7 +6,7 @@ class Ip(models.Model):
     ip = models.CharField(max_length=100)
 
 class Video(models.Model):
-    title = models.CharField('Название', max_length=30)
+    title = models.CharField('Название', max_length=50)
     description = models.TextField('Описание', max_length=300)
     video = models.FileField('Видео', upload_to='video/videos', validators=[validate_video_extension, file_size])
     likes = models.ManyToManyField(User, related_name="likes", blank=True)
@@ -19,12 +19,9 @@ class Video(models.Model):
     def comment_count(self):
         return self.comment_set.count()
 
-    class Meta:
-        verbose_name = 'Видео'
-        verbose_name_plural = 'Видео'
-
-    
-
+class History(models.Model):
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
