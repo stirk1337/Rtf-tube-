@@ -50,8 +50,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'baza',
         'USER': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5433',
+        'HOST': 'db',
+        'PORT': '5432',
         'PASSWORD': 'admin',
     
     }
@@ -67,9 +67,9 @@ DATABASES = {
 SECRET_KEY = 'django-insecure-ty(_^z6noiq%&#ovi0!1(aj(9^m6kk_vq#=6h1f26m=vv8weff'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['26.245.229.110', '25.37.105.93', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
