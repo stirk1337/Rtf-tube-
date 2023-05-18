@@ -55,9 +55,11 @@ def play_video(request, video_id):
                                                 'like_form': like_form,
                                                 'dislike_form': dislike_form})
 
+
 @login_required(login_url='/accounts/login/')
 def user_videos(request):
     return HttpResponseRedirect('/accounts/videos/' + request.user.username)
+
 
 @login_required(login_url='/accounts/login/')
 def user_videos(request, username):
@@ -66,20 +68,20 @@ def user_videos(request, username):
     history = History.objects.filter(user=request.user)
     return render(request, 'video/your_videos.html', {'data': videos, 'user': user, 'history': reversed(history)})
 
+
 @login_required(login_url='/accounts/login/')
 def upload_video(request):
     if request.method == 'POST':
         form = UploadVideoForm(request.POST, request.FILES)
         if form.is_valid():
 
-            video = Video(author_id = request.user,
+            video = Video(author_id=request.user,
                           title=request.FILES['video'].name.split('.')[0][:30] + '...',
                           description=request.POST.get('description'),
                           video=request.FILES['video'],
                           preview=request.FILES['preview'] if 'preview' in request.FILES else None,
                           )
             
-
             video.save()
             return HttpResponseRedirect('/accounts/videos/' + request.user.username)
 

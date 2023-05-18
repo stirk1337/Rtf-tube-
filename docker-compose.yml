@@ -19,12 +19,10 @@ services:
       - python
 
   python:
-    build: .
+    image: stirk1337/rtf-tube-tochka:latest
     command: sh -c "python /app/rtf_tube/manage.py migrate &&
              cd rtf_tube && 
              gunicorn rtf_tube.wsgi:application --bind 0.0.0.0:8000"
-
-              
     ports:
       - "8000:8000"
     depends_on:

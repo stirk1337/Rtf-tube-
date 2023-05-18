@@ -8,4 +8,6 @@ urlpatterns = [
     path('', include('video.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', include('users.urls'), name='register')
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
+    static(settings.MEDIA_URL,
+           document_root=settings.MEDIA_ROOT)

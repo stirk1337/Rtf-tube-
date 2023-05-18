@@ -7,15 +7,15 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-### S3 КОНСТАНТЫ
+# S3 КОНСТАНТЫ
 AWS_ACCESS_KEY_ID = 'dYWyowxB1tpSxSDpezb3jM'
 AWS_SECRET_ACCESS_KEY = 'g2TXPDmnBLHaf7u8ZBcEFyK7V7J4sANXeFJxh9DRvnbU'
 AWS_ACCESS_KEY_ID = 'dYWyowxB1tpSxSDpezb3jM'
 AWS_SECRET_ACCESS_KEY = 'g2TXPDmnBLHaf7u8ZBcEFyK7V7J4sANXeFJxh9DRvnbU'
 AWS_STORAGE_BUCKET_NAME = 'rtf-tube'
 AWS_S3_ENDPOINT_URL = 'https://hb.bizmrg.com'
-#STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3StaticStorage"}}
-#STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3StaticStorage"}}
+# STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3StaticStorage"}}
+# STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3StaticStorage"}}
 AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
 AWS_S3_CUSTOM_DOMAIN = '%s.hb.bizmrg.com' % AWS_STORAGE_BUCKET_NAME
 AWS_LOCATION = 'static'
@@ -24,7 +24,7 @@ STATICFILES_STORAGE = 'rtf_tube.storage.MediaStorage'
 STATIC_URL = 'https://%s/%s/static/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 MEDIA_URL = 'https://%s/%s/media/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 DEFAULT_FILE_STORAGE = 'rtf_tube.storage.MediaStorage'
-#MEDIA_ROOT = 'static/media'
+# MEDIA_ROOT = 'static/media'
 AWS_S3_REGION_NAME = 'ru-msk'
 
 PASSWORD_RESET_TIMEOUT = 259200
@@ -37,13 +37,11 @@ STATICFILES_DIRS = [
 
 ]
 
-##CELERY
+# CELERY
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 
-
-##
 
 DATABASES = {
     'default': {
@@ -53,11 +51,8 @@ DATABASES = {
         'HOST': 'db',
         'PORT': '5432',
         'PASSWORD': 'admin',
-    
     }
 }
-
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -119,21 +114,19 @@ WSGI_APPLICATION = 'rtf_tube.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #   }
-#}
+# }
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #   }
-#}
-
-
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -167,7 +160,6 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 
 
 # Default primary key field type
