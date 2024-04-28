@@ -4,26 +4,32 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Video',
+            name="Video",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('video', models.FileField(upload_to='static/video/videos')),
-                ('likes', models.PositiveIntegerField(verbose_name='Лайки')),
-                ('dislikes', models.PositiveIntegerField(verbose_name='Дизлайки')),
-                ('views', models.PositiveIntegerField(verbose_name='Просмотры')),
-                ('comments', models.JSONField(verbose_name='Комментарии')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("video", models.FileField(upload_to="static/video/videos")),
+                ("likes", models.PositiveIntegerField(verbose_name="Лайки")),
+                ("dislikes", models.PositiveIntegerField(verbose_name="Дизлайки")),
+                ("views", models.PositiveIntegerField(verbose_name="Просмотры")),
+                ("comments", models.JSONField(verbose_name="Комментарии")),
             ],
             options={
-                'verbose_name': 'Видео',
-                'verbose_name_plural': 'Видео',
+                "verbose_name": "Видео",
+                "verbose_name_plural": "Видео",
             },
         ),
     ]

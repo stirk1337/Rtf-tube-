@@ -5,16 +5,17 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('video', '0012_ip_alter_video_video_remove_video_views_video_views'),
+        ("video", "0012_ip_alter_video_video_remove_video_views_video_views"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='video',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="video",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
     ]

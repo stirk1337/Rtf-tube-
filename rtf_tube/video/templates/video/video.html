@@ -59,12 +59,12 @@
             <form method="POST", action="/video/post_like/">
               {% csrf_token %}
               {{ like_form }}
-              <input type="image" src="{% static 'img/like_icon_green.png' %}" height="50" width="70">{{ data.likes.count }}</p>
+              <input type="image" src="{% static 'img/like.png' %}" height="30" width="30">{{ data.likes.count }}</p>
             </form>
             <form method="POST", action="/video/post_dislike/">
               {% csrf_token %}
               {{ dislike_form }}
-              <input type="image" src="{% static 'img/dislike_icon_red.png' %}" height="50" width="70">{{ data.dislikes.count }} </p>
+              <input type="image" src="{% static 'img/dislike.png' %}" height="30" width="30">{{ data.dislikes.count }} </p>
           </form>
           </div>
         </div>

@@ -5,21 +5,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('video', '0019_remove_video_dislikes_remove_video_likes_and_more'),
+        ("video", "0019_remove_video_dislikes_remove_video_likes_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='video',
-            name='dislikes',
-            field=models.ManyToManyField(blank=True, related_name='dislikes', to=settings.AUTH_USER_MODEL),
+            model_name="video",
+            name="dislikes",
+            field=models.ManyToManyField(
+                blank=True, related_name="dislikes", to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AlterField(
-            model_name='video',
-            name='likes',
-            field=models.ManyToManyField(blank=True, related_name='likes', to=settings.AUTH_USER_MODEL),
+            model_name="video",
+            name="likes",
+            field=models.ManyToManyField(
+                blank=True, related_name="likes", to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

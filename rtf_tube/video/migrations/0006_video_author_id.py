@@ -4,16 +4,15 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('video', '0005_alter_video_preview'),
+        ("video", "0005_alter_video_preview"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='video',
-            name='author_id',
-            field=models.IntegerField(default=2, verbose_name='ID автора'),
+            model_name="video",
+            name="author_id",
+            field=models.IntegerField(default=2, verbose_name="ID автора"),
             preserve_default=False,
         ),
     ]

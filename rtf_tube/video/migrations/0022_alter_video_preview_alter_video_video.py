@@ -5,20 +5,30 @@ import video.validators
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('video', '0021_alter_video_preview_alter_video_video'),
+        ("video", "0021_alter_video_preview_alter_video_video"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='video',
-            name='preview',
-            field=models.ImageField(default='img/v_review.jpg', upload_to='video/preview', verbose_name='Превью'),
+            model_name="video",
+            name="preview",
+            field=models.ImageField(
+                default="img/v_review.jpg",
+                upload_to="video/preview",
+                verbose_name="Превью",
+            ),
         ),
         migrations.AlterField(
-            model_name='video',
-            name='video',
-            field=models.FileField(upload_to='video/videos', validators=[video.validators.validate_video_extension, video.validators.file_size], verbose_name='Видео'),
+            model_name="video",
+            name="video",
+            field=models.FileField(
+                upload_to="video/videos",
+                validators=[
+                    video.validators.validate_video_extension,
+                    video.validators.file_size,
+                ],
+                verbose_name="Видео",
+            ),
         ),
     ]

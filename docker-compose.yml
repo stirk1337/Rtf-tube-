@@ -1,32 +1,30 @@
 services:
 
-  db:
-    image: "postgres"
-    environment:
-      POSTGRES_DB: "baza"
-      POSTGRES_USER: "admin"
-      POSTGRES_PASSWORD: "admin"
-      POSTGRES_HOST: "localhost"
-
-  nginx:
-    image: "nginx"
-    restart: "always"
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - python
+#  db:
+#    image: "postgres:16.2-bullseye"
+#    environment:
+#      - POSTGRES_USER=${DB_USER}
+#      - POSTGRES_PASSWORD=${DB_PASS}
+#      - POSTGRES_DB=${DB_NAME}
+#    volumes:
+#      - db_data:/var/lib/postgresql/data
+#
+#    ports:
+#      - "5432:5432"
 
   python:
-    image: stirk1337/rtf-tube-tochka:latest
-    command: sh -c "python /app/rtf_tube/manage.py migrate &&
-             cd rtf_tube && 
-             gunicorn rtf_tube.wsgi:application --bind 0.0.0.0:8000"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "python rtf_tube/manage.py migrate && 
+               python rtf_tube/manage.py collectstatic &&
+               python rtf_tube/manage.py runserver"
     ports:
-      - "8000:8000"
-    depends_on:
-      - db
-
-
+      - "8001:8000"
+#    depends_on:
+#      - db
+#
+#volumes:
+#  db_data:
+#  static_volume:
 

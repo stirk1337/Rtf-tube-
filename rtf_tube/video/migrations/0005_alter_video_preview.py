@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('video', '0004_alter_video_preview'),
+        ("video", "0004_alter_video_preview"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='video',
-            name='preview',
-            field=models.ImageField(upload_to='video/static/video/preview', verbose_name='Превью'),
+            model_name="video",
+            name="preview",
+            field=models.ImageField(
+                upload_to="video/static/video/preview", verbose_name="Превью"
+            ),
         ),
     ]

@@ -6,23 +6,41 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('video', '0023_alter_video_preview'),
+        ("video", "0023_alter_video_preview"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='video',
+            name="video",
             options={},
         ),
         migrations.CreateModel(
-            name='History',
+            name="History",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('video', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='video.video')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "video",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="video.video"
+                    ),
+                ),
             ],
         ),
     ]

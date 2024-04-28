@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('video', '0024_alter_video_options_history'),
+        ("video", "0024_alter_video_options_history"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='video',
-            name='title',
-            field=models.CharField(max_length=50, verbose_name='Название'),
+            model_name="video",
+            name="title",
+            field=models.CharField(max_length=50, verbose_name="Название"),
         ),
     ]

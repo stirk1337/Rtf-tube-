@@ -6,25 +6,43 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('video', '0013_video_created_at'),
+        ("video", "0013_video_created_at"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('message', models.TextField(max_length=250)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("message", models.TextField(max_length=250)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.AlterField(
-            model_name='video',
-            name='comments',
-            field=models.OneToOneField(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='video.comment'),
+            model_name="video",
+            name="comments",
+            field=models.OneToOneField(
+                blank=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="comments",
+                to="video.comment",
+            ),
         ),
     ]

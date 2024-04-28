@@ -4,22 +4,21 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('video', '0006_video_author_id'),
+        ("video", "0006_video_author_id"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='video',
-            name='description',
-            field=models.TextField(default=0, max_length=300, verbose_name='Описание'),
+            model_name="video",
+            name="description",
+            field=models.TextField(default=0, max_length=300, verbose_name="Описание"),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='video',
-            name='title',
-            field=models.CharField(default=0, max_length=30, verbose_name='Название'),
+            model_name="video",
+            name="title",
+            field=models.CharField(default=0, max_length=30, verbose_name="Название"),
             preserve_default=False,
         ),
     ]
