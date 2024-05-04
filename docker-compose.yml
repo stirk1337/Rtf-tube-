@@ -12,15 +12,22 @@ services:
 #    ports:
 #      - "5432:5432"
 
-  python:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  django:
+    build: .
     command: sh -c "python rtf_tube/manage.py migrate && 
-               python rtf_tube/manage.py collectstatic &&
-               python rtf_tube/manage.py runserver"
+               python rtf_tube/manage.py collectstatic --noinput &&
+               python rtf_tube/manage.py runserver 0.0.0.0:8000 --noreload"
     ports:
-      - "8001:8000"
+      - "8000:8000"
+
+  preview_consumer:
+    build: .
+    command: sh -c "python rtf_tube/manage.py preview_updater_consumer"
+
+  preview_scheduler:
+    build: .
+    command: sh -c "python rtf_tube/manage.py preview_updater_scheduler"
+
 #    depends_on:
 #      - db
 #

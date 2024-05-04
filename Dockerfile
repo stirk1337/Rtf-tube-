@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt ./
 
 RUN apt update && \
-    apt install libpq-dev gcc -y &&  \
+    apt install ffmpeg libpq-dev gcc -y &&  \
     pip install -r /app/requirements.txt
 
 COPY . .
