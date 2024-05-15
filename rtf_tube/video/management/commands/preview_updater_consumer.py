@@ -36,7 +36,7 @@ class Command(BaseCommand):
             endpoint_url='https://storage.yandexcloud.net'
         )
 
-        queue_url = client.create_queue(QueueName='video-preview').get('QueueUrl')
+        queue_url = client.create_queue(QueueName=settings.QUEUE_NAME).get('QueueUrl')
 
         while True:
             messages = client.receive_message(

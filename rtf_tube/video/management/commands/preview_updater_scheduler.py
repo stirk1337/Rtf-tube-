@@ -27,7 +27,7 @@ class Command(BaseCommand):
             aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
         )
 
-        queue_url = client.create_queue(QueueName='video-preview').get('QueueUrl')
+        queue_url = client.create_queue(QueueName=settings.QUEUE_NAME).get('QueueUrl')
 
         while True:
             videos_without_preview = Video.objects.filter(preview='')

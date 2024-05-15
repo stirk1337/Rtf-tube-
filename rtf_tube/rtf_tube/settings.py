@@ -29,6 +29,7 @@ STATIC_URL = "https://%s/%s/static/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 MEDIA_URL = "https://%s/%s/media/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 DEFAULT_FILE_STORAGE = "rtf_tube.storage.MediaStorage"
 # MEDIA_ROOT = 'static/media'
+QUEUE_NAME = os.environ.get("QUEUE_NAME")
 AWS_S3_REGION_NAME = "ru-central1"
 
 PASSWORD_RESET_TIMEOUT = 259200
